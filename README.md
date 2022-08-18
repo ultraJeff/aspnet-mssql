@@ -1,6 +1,8 @@
 ## Compose sample application: ASP.NET with MS SQL server database
 
-JEFF NOTE: DONE USING KOMPOSE CONVERT
+**This repo is used for testing `kompose convert`**
+
+The full command is `kompose convert --provider=openshift --push-image-registry=quay.io -f docker-compose.yaml --build build-config`
 
 Project structure:
 ```
