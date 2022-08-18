@@ -1,5 +1,7 @@
 ## Compose sample application: ASP.NET with MS SQL server database
 
+JEFF NOTE: DONE USING KOMPOSE CONVERT
+
 Project structure:
 ```
 .
