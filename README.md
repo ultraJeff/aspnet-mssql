@@ -2,7 +2,13 @@
 
 **This repo is used for testing `kompose convert`**
 
-The full command is `kompose convert --provider=openshift --push-image-registry=quay.io -f docker-compose.yaml --build build-config`
+The full command is `kompose convert --provider=openshift -f docker-compose.yaml --build build-config`
+
+_Make sure to have an origin repo on GitHub, etc. in order to capture the buildconfig_
+
+Then run oc apply -f .
+
+---
 
 Project structure:
 ```
@@ -22,7 +28,7 @@ services:
   web:
     build: app
     ports:
-    - 80:80
+    - 8080:8080
   db:
     # mssql server image isn't available for arm64 architecture, so we use azure-sql instead
     image: mcr.microsoft.com/azure-sql-edge:1.0.4
@@ -32,8 +38,8 @@ services:
 ```
 The compose file defines an application with two services `web` and `db`. The image for the web service is built with the Dockerfile inside the `app` directory (build parameter).
 
-When deploying the application, docker compose maps the container port 80 to port 80 of the host as specified in the file.
-Make sure port 80 on the host is not being used by another container, otherwise the port should be changed.
+When deploying the application, docker compose maps the container port 8080 to port 8080 of the host as specified in the file.
+Make sure port 8080 on the host is not being used by another container, otherwise the port should be changed.
 
 > ℹ️ **_INFO_**  
 > For compatibility purpose between `AMD64` and `ARM64` architecture, we use Azure SQL Edge as database instead of MS SQL Server.  
@@ -65,10 +71,10 @@ Listing containers must show two containers running and the port mapping as belo
 $ docker ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                  NAMES
 7f3a2a7ea5c0        microsoft/mssql-server-linux   "/opt/mssql/bin/sqls…"   4 minutes ago       Up 4 minutes        1433/tcp             aspnet-mssql_db_1
-27342dde8b64        aspnet-mssql_web               "dotnet aspnetapp.dll"   4 minutes ago       Up 4 minutes        0.0.0.0:80->80/tcp   aspnet-mssql_web_1
+27342dde8b64        aspnet-mssql_web               "dotnet aspnetapp.dll"   4 minutes ago       Up 4 minutes        0.0.0.0:8080->8080/tcp   aspnet-mssql_web_1
 ```
 
-After the application starts, navigate to `http://localhost:80` in your web browser.
+After the application starts, navigate to `http://localhost:8080` in your web browser.
 
 ![page](output.jpg)
 
