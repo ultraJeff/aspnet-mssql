@@ -1,0 +1,35 @@
+{
+    "version": "1.0.0",
+    "vertices": {
+        "0": {
+            "id": 0,
+            "iteration": 1,
+            "name": "start"
+        },
+        "1": {
+            "id": 1,
+            "iteration": 2,
+            "name": "iteration: 2\nclass: DotNetCoreDockerfileGenerator\nname: DotNetCore-Dockerfile",
+            "data": {
+                "consumedArtifacts": [
+                    "aspnetapp - Service"
+                ],
+                "pathMappings": "",
+                "producedArtifacts": []
+            }
+        }
+    },
+    "edges": {
+        "0": {
+            "id": 0,
+            "from": 0,
+            "to": 1,
+            "name": "0 -\u003e 1",
+            "data": {
+                "newArtifact": [
+                    "aspnetapp - Service"
+                ]
+            }
+        }
+    }
+}
